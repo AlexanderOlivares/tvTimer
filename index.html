@@ -8,21 +8,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-      <h1 class="row display-3 justify-content-center m-3">
-        TV Timer
-      </h1>
-  <div class="container">
-    <div class="row justify-content-center">
-        <h3 class="pr-4">
-        HOURS
-        </h3>
-        <h3 class="pl-4 pr-4">
-        MINUTES
-        </h3>
-        <h3 class="pl-4">
-        SECONDS
-      </div>
-    </div>
+    <h1 class="row display-3 justify-content-center m-3">
+      TV Timer
+    </h1>
     <div class="row displayTimes justify-content-center">
         <h1 id="displayHour" class="display-3 pr-4">
         00 
@@ -33,30 +21,45 @@
         <h1 id="displaySec" class="display-3 pl-4">
         00
         </h1>
-      </div>
-    </div>
-    
-    <div class="row justify-content-center">
-      <button type="button" class="btn-lg m-2 btn-success">start</button>
-      <button type="button" class="btn-lg m-2 btn-danger">reset</button>
     </div>
     <div class="row justify-content-center">
-      <button type="button" class="btn m-2 btn-success btn-sm">mute</button>
+      <button type="button" id="start" class="btn-lg m-2 btn-success">start</button>
+      <button type="button" id="reset" class="btn-lg m-2 btn-danger">reset</button>
     </div>
     <div class="row justify-content-center">
-  <!-- Button trigger modal -->
-<button type="button" class="btn-sm m-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
-  save new timer
-</button>
-      <!-- <button type="button" class="btn-sm m-2">save hotkey</button> -->
-      <!-- <button type="button" class="btn-sm m-2">delay</button> -->
+      <button type="button" id="mute" class="btn m-2 btn-success btn-sm">mute</button>
     </div>
-  </div>
-
+    <div class="inputHeaders row justify-content-center m-2">
+      <h4 class="col- pr-3">HOURS</h4>
+      <h4 class="col- pl-2 pr-1">MINUTES</h4>
+      <h4 class="col- pl-3">SECONDS</h4>
+    </div>
+        <div class="row justify-content-center">
+          <input id="inputHour" class="col-2 col-md-1 m-1" type="number" value="00">
+          <input id="inputMin" class="col-2 col-md-1 m-1" type="number" value="00">
+          <input id="inputSec" class="col-2 col-md-1 m-1" type="number" value="00">
+        </div>
+    <div class="row justify-content-center m-2">
+      <h4 id="delayHeader" class="col- ">DELAY i</h4>
+    </div>
+    <div class="row justify-content-center">
+      <input id="delay" class="col-2 col-md-1" type="number" value="00">
+    </div>
+    <div class="row justify-content-center">
+      <button id="setTimer" type="button" class="btn m-4 btn-primary">
+        set timer
+      </button>
+    </div>
+  <hr>
   <div class="row display-4 justify-content-center">
     Saved Timers
   </div>
-
+  <div>
+  <!-- Button trigger modal -->
+      <button type="button" class="btn-sm m-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
+        save new timer
+      </button>
+  </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -68,35 +71,31 @@
         </button>
       </div>
       <div class="modal-body">
+    <div class="row justify-content-center m-2">
+      <h6 class="col- pr-3">HOURS</h6>
+      <h6 class="col- pl-2 pr-1">MINUTES</h6>
+      <h6 class="col- pl-3">SECONDS</h6>
+    </div>
         <div class="row justify-content-center">
-          <div class="col-3 m-1">
-            <h4>HOURS</h4>
-          <input class="col-9 m-1" type="number" value="00">
-          </div>
-          <div class="col-3 m-1">
-            <h4>MINUTES</h4>
-          <input class="col-9 m-1" type="number" value="00">
-          </div>
-          <div class="col-3 m-1">
-            <h4>SECONDS</h4>
-          <input class="col-9 m-1" type="number" value="00">
-          </div>
+          <input id="saveHour" class="col-2 col-md-1 m-1" type="number" min="0" max="99" value="00">
+          <input id="saveMin" class="col-2 col-md-1 m-1" type="number" min="0" max="60" value="00">
+          <input id="saveSec" class="col-2 col-md-1 m-1" type="number" min="0" max="60" value="00">
         </div>
-        <hr>
-        <div class="row justify-content-center">
-          <div>
-            <input class="col-5 m-1" type="number" value="00">
-          </div>
-      </div>
+    <div class="row justify-content-center m-2">
+      <h6 class="col- ">DELAY</h6>
+    </div>
+    <div class="row justify-content-center">
+      <input id="saveDelay" class="col-2 col-md-1" type="number" value="00">
+    </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button id="saveTimer" type="button" class="btn btn-primary">save timer</button>
       </div>
     </div>
   </div>
 </div>
 <!-- JS script here-->
-
+<script src="main.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

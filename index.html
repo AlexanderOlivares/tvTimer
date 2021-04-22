@@ -10,20 +10,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
-<body class="bg-primary text-white">
+<body class="bg-image text-white" style="
+background-image: url('colorbars.jpeg')"
+>
     <h1 class="row display-3 justify-content-center m-3">
       TV Timer
     </h1>
     <div class="row displayTimes justify-content-center" style="font-family: Orbitron, sans-serif">
-        <h1 id="displayHour" class="display-4 bg-dark pr-4">
+      <div class="row justify-content-center" style="backdrop-filter: blur(20px) brightness(40%) opacity(80%);">
+        <h1 id="displayHour" class="display-4 pr-4">
         00 
         </h1>
-        <h1 id="displayMin" class="display-4 bg-dark pl-4 pr-4">
+        <h1 id="displayMin" class="display-4 pl-4 pr-4">
         00
         </h1>
-        <h1 id="displaySec" class="display-4 bg-danger pl-4">
+        <h1 id="displaySec" class="display-4 pl-4">
         00
         </h1>
+      </div>
     </div>
     <div class="row justify-content-center">
       <button type="button" id="start" class="btn-lg m-2 btn-success">start</button>
@@ -38,21 +42,24 @@
       <h4 class="col- pl-3">SECONDS</h4>
     </div>
         <div class="row justify-content-center">
-          <input id="inputHour" class="col-2 col-md-1 m-1" type="number" value="00">
-          <input id="inputMin" class="col-2 col-md-1 m-1" type="number" value="00">
-          <input id="inputSec" class="col-2 col-md-1 m-1" type="number" value="00">
+          <input id="inputHour" class="col-2 col-md-1 m-1" type="number" min="0" max="99" value="00">
+          <input id="inputMin" class="col-2 col-md-1 m-1" type="number" min="0" max="60" value="00">
+          <input id="inputSec" class="col-2 col-md-1 m-1" type="number" min="0" max="60" value="00">
         </div>
-    <div class="row justify-content-center m-2">
-      <h4 id="delayHeader" class="col- ">DELAY</h4>
+    <div id="delayHeader" class="row justify-content-center m-2">
+      <h4 class="col- ">DELAY</h4>
       <span class="p-1">
-      <i class="fas fa-info-circle fa-lg"></i>
+      <i id="info" class="fas fa-info-circle fa-lg" data-bs-toggle="tooltip" trigger="click" data-bs-placement="right" title="Start timer when talent begins. Voice will count down [your delay here] seconds early. Count down talent along with voice. Use this to count down field reporters who are on a delay."></i>
       </span>
     </div>
     <div class="row justify-content-center">
       <input id="delay" class="col-2 col-md-1" type="number" value="00">
     </div>
+    <div style="display: none" id="delayIndicator" class="row justify-content-center m-2">
+      <h4 class="col- "><!--delay length injected with JS--></h4>
+    </div>
 <!--
-
+  ********************* modal for upcoming save custom timer feature
   <div class="row display-4 justify-content-center">
     Saved Timers
   </div>

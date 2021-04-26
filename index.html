@@ -58,19 +58,19 @@ background-image: url('colorbars.jpeg')"
     <div style="display: none" id="delayIndicator" class="row justify-content-center m-2">
       <h4 class="col- "><!--delay length injected with JS--></h4>
     </div>
-<!--
-  ********************* modal for upcoming save custom timer feature
-  <div class="row display-4 justify-content-center">
+
+  <div class="row m-4 display-4 justify-content-center">
     Saved Timers
   </div>
-  <div>
- ********************** Button trigger modal
+  <div class="row justify-content-center">
+ <!-- ********************** Button trigger modal -->
       <button type="button" class="btn-sm m-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
         save new timer
       </button>
   </div>
-************************ Modal
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- ************************ Modal -->
+<div class="modal fade text-dark" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -80,31 +80,52 @@ background-image: url('colorbars.jpeg')"
         </button>
       </div>
       <div class="modal-body">
-    <div class="row justify-content-center m-2">
-      <h6 class="col- pr-3">HOURS</h6>
-      <h6 class="col- pl-2 pr-1">MINUTES</h6>
-      <h6 class="col- pl-3">SECONDS</h6>
-    </div>
+         <div class="row justify-content-center m-2">
+            <h6 class="col- pr-3">HOURS</h6>
+          <h6 class="col- pl-2 pr-1">MINUTES</h6>
+          <h6 class="col- pl-3">SECONDS</h6>
+        </div>
         <div class="row justify-content-center">
-          <input id="saveHour" class="col-2 col-md-1 m-1" type="number" min="0" max="99" value="00">
-          <input id="saveMin" class="col-2 col-md-1 m-1" type="number" min="0" max="60" value="00">
-          <input id="saveSec" class="col-2 col-md-1 m-1" type="number" min="0" max="60" value="00">
+          <input id="saveHour" class="col-2 col-md-2 m-1" type="number" min="0" max="99" value="00">
+          <input id="saveMin" class="col-2 col-md-2 m-1" type="number" min="0" max="60" value="00">
+          <input id="saveSec" class="col-2 col-md-2 m-1" type="number" min="0" max="60" value="00">
         </div>
     <div class="row justify-content-center m-2">
-      <h6 class="col- ">DELAY</h6>
+      <h6 class="col-">DELAY</h6>
     </div>
     <div class="row justify-content-center">
-      <input id="saveDelay" class="col-2 col-md-1" type="number" value="00">
+      <input id="saveDelay" class="col-2 col-md-2" type="number" value="00">
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="saveTimer" type="button" class="btn btn-primary">save timer</button>
+        <button id="saveTimer" type="button" data-dismiss="modal" class="btn btn-primary">save timer</button>
       </div>
     </div>
   </div>
   </div>
   </div>
--->
+<!-- ************************ Modal -->
+<div  class="row justify-content-center">
+<table class="table-sm table-responsive{-sm|-md|-lg|-xl} table-hover">
+  <!-- <thead>
+    <tr>
+      <th scope="col">Set</th>
+      <th scope="col">Time</th>
+      <th scope="col">Delay</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead> -->
+  <tbody id="tableBody" >
+    <!-- <tr>
+      <th scope="row">1</th>
+      <td>james</td>
+      <td>Otto</td>
+    </tr> -->
+  </tbody>
+</table>
+</div>
+
+
 
 <!-- JS script here-->
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=yK21WOew"></script>

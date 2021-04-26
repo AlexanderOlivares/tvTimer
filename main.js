@@ -18,12 +18,17 @@ let delay = document.getElementById("delay");
 let info = document.getElementById("info");
 
 // vars below for save custom timer feature (coming soon)
-// let saveHour = document.getElementById("saveHour");
-// let saveMin = document.getElementById("saveMin");
-// let saveSec = document.getElementById("saveSec");
+let saveHour = document.getElementById("saveHour");
+let saveMin = document.getElementById("saveMin");
+let saveSec = document.getElementById("saveSec");
 
-// let saveDelay = document.getElementById("saveDelay");
-// let saveTimer = document.getElementById("saveTimer");
+let saveDelay = document.getElementById("saveDelay");
+let saveTimer = document.getElementById("saveTimer");
+let tableBody = document.getElementById("tableBody");
+
+// grab saved timers from local stoarage and assign key
+let savedTimers = Object.keys(localStorage);
+let timerID = savedTimers.length ? Math.max(...savedTimers.map(Number)) + 1 : 1;
 
 const timesToSpeak = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 30];
 
@@ -201,4 +206,70 @@ const showInputs = () => {
   inputHeaders.style.display = "flex";
   delayHeader.style.display = "flex";
   delay.style.display = "block";
+};
+
+////////////////////////////////// saved timer code below
+
+saveTimer.addEventListener("click", () => {
+  savedTimers.push(timerID);
+  const val = `${saveHour.value}:${saveMin.value}:${saveSec.value}:${saveDelay.value}`;
+  localStorage.setItem(
+    `${timerID}`,
+    `${saveHour.value}:${saveMin.value}:${saveSec.value}:${saveDelay.value}`
+  );
+  timerID++;
+  appendTime(formatSavedTimes(val));
+});
+
+const appendTime = time => {
+  let hourMinSec = time.split("|")[0];
+  let delay = time.split("|")[1].match(/\d/g).join("");
+  let [hour, min, sec] = hourMinSec.split(":").map(e => e.trim());
+  let row = document.createElement("tr");
+
+  let html =
+    '<th scope="row">' +
+    "<td>" +
+    `<button onclick="setTimerFromSaved(${hour}, ${min}, ${sec}, ${delay})">Set Time</button>` +
+    "</td>" +
+    "<td>" +
+    `${hourMinSec}` +
+    "</td>" +
+    "<td>" +
+    `delay: ${delay}` +
+    "</td>" +
+    "<td>" +
+    "<button>Delete</button>" +
+    "</td>" +
+    "</th>";
+
+  row.innerHTML = html;
+  tableBody.appendChild(row);
+};
+
+const displaySavedTimers = () => {
+  let savedVals = Object.values(localStorage);
+
+  savedVals.forEach(e => appendTime(formatSavedTimes(e)));
+};
+
+const formatSavedTimes = time => {
+  let splitHyphen = time.split(":");
+  let hourMinSec = splitHyphen
+    .slice(0, 3)
+    .map(e => (e.length === 1 ? `0${e}` : e));
+  let delay = splitHyphen.slice(-1);
+  return `${hourMinSec.join(" : ")} | delay: ${delay} seconds`;
+};
+
+displaySavedTimers();
+let savedTimeButton = document.getElementById("savedTimeButton");
+
+const setTimerFromSaved = (h, m, s, d) => {
+  console.log("hi there");
+  hour.value = h;
+  hour.innerText = h;
+  min.value = m;
+  sec.value = s;
+  delay.value = d;
 };

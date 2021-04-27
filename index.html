@@ -17,7 +17,7 @@ background-image: url('colorbars.jpeg')"
       TV Timer
     </h1>
     <div class="row displayTimes justify-content-center" style="font-family: Orbitron, sans-serif">
-      <div class="row justify-content-center" style="backdrop-filter: blur(20px) brightness(40%) opacity(80%);">
+      <div class="row justify-content-center" style="backdrop-filter: blur(20px) brightness(40%) opacity(70%);">
         <h1 id="displayHour" class="display-4 pr-4">
         00 
         </h1>
@@ -53,23 +53,23 @@ background-image: url('colorbars.jpeg')"
       </span>
     </div>
     <div class="row justify-content-center">
-      <input id="delay" class="col-2 col-md-1" type="number" value="00">
+      <input id="delay" class="col-2 col-md-1" type="number" min="0" max="60" value="00">
     </div>
     <div style="display: none" id="delayIndicator" class="row justify-content-center m-2">
       <h4 class="col- "><!--delay length injected with JS--></h4>
     </div>
 
-  <div class="row m-4 display-4 justify-content-center">
+  <div id="savedTitle" class="row m-4 display-4 justify-content-center">
     Saved Timers
   </div>
-  <div class="row justify-content-center">
+  <div id="saveNewTimerButton" class="row justify-content-center">
  <!-- ********************** Button trigger modal -->
       <button type="button" class="btn-sm m-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
         save new timer
       </button>
   </div>
 
-<!-- ************************ Modal -->
+<!-- ************************ Modal *************************************-->
 <div class="modal fade text-dark" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -94,7 +94,7 @@ background-image: url('colorbars.jpeg')"
       <h6 class="col-">DELAY</h6>
     </div>
     <div class="row justify-content-center">
-      <input id="saveDelay" class="col-2 col-md-2" type="number" value="00">
+      <input id="saveDelay" class="col-2 col-md-2" type="number" min="0" max="60" value="00">
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -104,32 +104,22 @@ background-image: url('colorbars.jpeg')"
   </div>
   </div>
   </div>
-<!-- ************************ Modal -->
-<div  class="row justify-content-center">
+<!-- ************************ Modal *********************-->
+
+<!-- table for saved shots  -->
+<div id="tableContainer" class="row justify-content-center">
 <table class="table-sm table-responsive{-sm|-md|-lg|-xl} table-hover">
-  <!-- <thead>
-    <tr>
-      <th scope="col">Set</th>
-      <th scope="col">Time</th>
-      <th scope="col">Delay</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead> -->
-  <tbody id="tableBody" >
-    <!-- <tr>
-      <th scope="row">1</th>
-      <td>james</td>
-      <td>Otto</td>
-    </tr> -->
+  <tbody id="tableBody">
+    <!-- saved shots injected with JS -->
   </tbody>
 </table>
 </div>
 
 
 
-<!-- JS script here-->
-<script src="https://code.responsivevoice.org/responsivevoice.js?key=yK21WOew"></script>
-<script src="main.js"></script>
+<!-- scripts below here-->
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=yK21WOew"></script>
+  <script src="main.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

@@ -54,13 +54,25 @@ sec.onchange = () => {
 
 const isValidTime = (...arguments) => {
   let times = [...arguments];
+  let hourMinSecTotal = times.slice(0, 3).reduce((a, c) => a + c, 0);
+  // no time was added
+  if (hourMinSecTotal === 0) {
+    alert("No time has been added.");
+    return null;
+  }
+
   let reg = /^\d{1,2}$/;
   return times.every(time => reg.test(time) && time <= 60);
 };
 
 start.addEventListener("click", () => {
   delayLength = +delay.value;
-  if (isValidTime(+hour.value, +min.value, +sec.value, delayLength)) {
+  let validTime = isValidTime(+hour.value, +min.value, +sec.value, delayLength);
+
+  // handles case of no time being added
+  if (validTime === null) return;
+
+  if (validTime) {
     delayIndicator.innerText = `Delay: ${delayLength} seconds`;
     startTimer(delayLength);
     hideInputs();
@@ -167,8 +179,7 @@ const speakTimeExpired = (hour, min, sec) => {
 const addLeadingZero = strOfNum => {
   let num = +strOfNum;
 
-  // allows for edge case of user input with multiple leading zeros like 0003 minutes
-  if (strOfNum.length > 2 && num < 10) {
+  if (strOfNum.length >= 2 && num < 10) {
     strOfNum = strOfNum.slice(-1);
   } else {
     strOfNum = strOfNum.slice(-2);
@@ -201,7 +212,9 @@ const resetTimer = () => {
 
 mute.addEventListener("click", () => {
   isMuted = !isMuted;
-  mute.innerText = isMuted ? "unmute" : "mute";
+  mute.innerHTML = isMuted
+    ? '<i class="fas fa-volume-mute"></i>'
+    : '<i class="fas fa-volume-up"></i>';
   mute.classList.toggle("btn-danger");
 });
 
@@ -218,7 +231,11 @@ const displayFlex = id => {
 };
 
 const hideInputs = () => {
-  if (!!delayLength) delayIndicator.style.display = "flex";
+  if (!!delayLength) {
+    displayFlex(delayIndicator);
+    delayIndicator.style.fontSize = "24px";
+  }
+
   let inputSettingsIds = [
     inputHour,
     inputMin,
@@ -253,7 +270,23 @@ const showInputs = () => {
 ////////////////////////////////// saved timer code below
 
 saveTimer.addEventListener("click", () => {
-  console.log(timerID);
+  let validTime = isValidTime(
+    +saveHour.value,
+    +saveMin.value,
+    +saveSec.value,
+    +saveDelay.value
+  );
+
+  // no time was added
+  if (validTime === null) return;
+
+  if (!validTime) {
+    alert(
+      "Invalid time. Please use format 00:00:00 and only enter positive numbers less than or equal to 60."
+    );
+    return;
+  }
+
   savedTimers.push(timerID);
   const time = `${saveHour.value}:${saveMin.value}:${saveSec.value}:${saveDelay.value}`;
   localStorage.setItem(
@@ -261,7 +294,6 @@ saveTimer.addEventListener("click", () => {
     `${saveHour.value}:${saveMin.value}:${saveSec.value}:${saveDelay.value}`
   );
   timerID++;
-  console.log(timerID);
   appendTime(formatSavedTimes(timerID, time));
 });
 
@@ -275,7 +307,6 @@ const formatSavedTimes = (timerID, time) => {
 };
 
 const appendTime = timeArr => {
-  console.log(timeArr);
   let targetId = timeArr[0];
   let hourMinSec = timeArr[1].split("|")[0];
   let delay = timeArr[1].split("|")[1].match(/\d/g).join("");
@@ -287,7 +318,7 @@ const appendTime = timeArr => {
   let html =
     `<th scope="row">` +
     `<td ${style}>` +
-    `<button class="btn-primary" onclick="setTimerFromSaved(${hour}, ${min}, ${sec}, ${delay})">Set Time</button>` +
+    `<button class="btn-primary" onclick="setTimerFromSaved(${hour}, ${min}, ${sec}, ${delay})">set time</button>` +
     "</td>" +
     `<td ${style}>` +
     `${hourMinSec}` +
@@ -296,7 +327,7 @@ const appendTime = timeArr => {
     `delay: ${delay}` +
     "</td>" +
     `<td ${style}>` +
-    `<button class="btn-danger" onclick="deleteTimer(${targetId})">Delete</button>` +
+    `<button class="btn-danger" onclick="deleteTimer(${targetId})"><i class="fas fa-trash"></i></button>` +
     "</td>" +
     "</th>";
 

@@ -10,21 +10,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
+
 <body class="bg-image text-white" style="
-background-image: url('colorbars.jpeg')"
+background-image: url('colorbars.jpeg'); background-size: cover;
+background-repeat: no-repeat;
+background-position: left;
+background-attachment: fixed;"
 >
     <h1 class="row display-3 justify-content-center m-3">
       TV Timer
     </h1>
     <div class="row displayTimes justify-content-center" style="font-family: Orbitron, sans-serif">
       <div class="row justify-content-center" style="backdrop-filter: blur(20px) brightness(40%) opacity(70%);">
-        <h1 id="displayHour" class="display-4 pr-4">
+        <h1 id="displayHour" class="display-4 pr-3">
         00 
         </h1>
-        <h1 id="displayMin" class="display-4 pl-4 pr-4">
+        <h1 id="displayMin" class="display-4 pl-3 pr-3">
         00
         </h1>
-        <h1 id="displaySec" class="display-4 pl-4">
+        <h1 id="displaySec" class="display-4 pl-3">
         00
         </h1>
       </div>
@@ -34,7 +38,7 @@ background-image: url('colorbars.jpeg')"
       <button type="button" id="reset" class="btn-lg m-2 btn-danger">reset</button>
     </div>
     <div class="row justify-content-center">
-      <button type="button" id="mute" class="btn m-2 btn-success btn-sm">mute</button>
+      <button type="button" id="mute" class="btn m-2 btn-success btn-sm"><i class="fas fa-volume-up"></i></button>
     </div>
     <div class="inputHeaders row justify-content-center m-2">
       <h4 class="col- pr-3">HOURS</h4>
@@ -42,9 +46,9 @@ background-image: url('colorbars.jpeg')"
       <h4 class="col- pl-3">SECONDS</h4>
     </div>
         <div class="row justify-content-center">
-          <input id="inputHour" class="col-2 col-md-1 m-1" type="number" min="0" max="99" value="00">
-          <input id="inputMin" class="col-2 col-md-1 m-1" type="number" min="0" max="60" value="00">
-          <input id="inputSec" class="col-2 col-md-1 m-1" type="number" min="0" max="60" value="00">
+          <input id="inputHour" class="col-3 col-sm-2 col-md-2 col-lg-1 m-1" type="number" min="0" max="99" value="00">
+          <input id="inputMin" class="col-3 col-sm-2 col-md-2 col-lg-1 m-1" type="number" min="0" max="60" value="00">
+          <input id="inputSec" class="col-3 col-sm-2 col-md-2 col-lg-1 m-1" type="number" min="0" max="60" value="00">
         </div>
     <div id="delayHeader" class="row justify-content-center m-2">
       <h4 class="col- ">DELAY</h4>
@@ -53,18 +57,19 @@ background-image: url('colorbars.jpeg')"
       </span>
     </div>
     <div class="row justify-content-center">
-      <input id="delay" class="col-2 col-md-1" type="number" min="0" max="60" value="00">
+      <input id="delay" class="col-3 col-sm-2 col-md-2 col-lg-1" type="number" min="0" max="60" value="00">
     </div>
     <div style="display: none" id="delayIndicator" class="row justify-content-center m-2">
       <h4 class="col- "><!--delay length injected with JS--></h4>
     </div>
 
-  <div id="savedTitle" class="row m-4 display-4 justify-content-center">
+  <div id="savedTitle" class="row m-2 display-4 justify-content-center">
     Saved Timers
   </div>
-  <div id="saveNewTimerButton" class="row justify-content-center">
+  <div id="saveNewTimerButton" class="row justify-content-center m-2">
  <!-- ********************** Button trigger modal -->
-      <button type="button" class="btn-sm m-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn m-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <i class="fas fa-plus-circle"></i>
         save new timer
       </button>
   </div>
@@ -74,7 +79,7 @@ background-image: url('colorbars.jpeg')"
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Timer</h5>
+        <h2 class="modal-title" id="exampleModalLabel">New Timer</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -104,7 +109,7 @@ background-image: url('colorbars.jpeg')"
   </div>
   </div>
   </div>
-<!-- ************************ Modal *********************-->
+<!-- ************************ Modal *****************************-->
 
 <!-- table for saved shots  -->
 <div id="tableContainer" class="row justify-content-center">
